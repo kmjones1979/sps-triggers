@@ -8,7 +8,6 @@ dataSources:
       name: sps-triggers
       network: mainnet
       source:
-          startBlock: 1000000
           package:
               moduleName: map_contract # change this to the substreams module you want as a source
               file: ./substreams-test-v1.0.1.spkg
