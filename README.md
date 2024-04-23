@@ -15,7 +15,7 @@ See https://thegraph.com/docs/en/cookbook/substreams-powered-subgraphs/
 
 ### Triggers: Processing subgraph mappings with substreams triggers
 
-n order to use Substreams triggers you will need a working Substreams package. The following steps outline how to upgrade the package to trigger AssemblyScript mappings..
+In order to use Substreams triggers you will need a working Substreams package. The following steps outline how to upgrade the package to trigger AssemblyScript mappings..
 
 To do this, start a new project and run graph init. Choose `substreams`, name the subgraph slug and define the directory to create the subgraph. This will prompt you to include the path to the spkg file you want to use for your triggers.
 
