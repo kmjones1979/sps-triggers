@@ -12,6 +12,7 @@ dataSources:
           package:
               moduleName: map_contract # change this to the substreams module you want as a source
               file: ./substreams-test-v1.0.1.spkg
+              #params: "foo"
       mapping:
           kind: substreams/graph-entities
           file: ./src/mapping.ts # add the mapping containing the handlers

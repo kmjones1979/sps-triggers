@@ -2,12 +2,12 @@
 
 ## Substreams-powered subgraphs
 
-Substreams is a new framework for processing blockchain data, developed by StreamingFast for The Graph Network. A substreams modules can output entity changes, which are compatible with Subgraph entities using the graph_out module, bringing the indexing speed and additional data of Substreams to subgraph developers.
+Substreams is a framework for processing blockchain data, developed by StreamingFast for The Graph Network. A Substreams module can output entity changes, which are compatible with Subgraph entities using the graph_out module, bringing the indexing speed and additional data of Substreams to subgraph developers.
 
-Additionally, a recent update to graph-node v0.34.0 enables Substreams as Source of Triggers for Subgraphs. This update significantly enhances subgraph functionality by enabling substreams to act as a source of triggers for running subgraph mappings. Developers can now directly run subgraph mappings on the data output from substreams, facilitating a more integrated and efficient workflow. The differences in both of these approaches are outlined in the following two sections.
+As of graph-node v0.34.0, developers can now use Substreams as source of triggers for Subgraphs which significantly enhances functionality by allowing the reuse of existing Substreams packages as an extraction layer and enabling access to more data sources. Developers can now directly run subgraph mappings on the data output from Substreams, facilitating a more integrated and efficient workflow. The differences in both of these approaches are outlined in the following two sections.
 
 -   Cookbook Example: processing subgraph data using the graph_out module
--   Processing subgraph mappings with substreams triggers
+-   Processing subgraph mappings with Substreams triggers
 
 ### Cookbook Example: Processing subgraph data using the graph_out module
 
@@ -15,9 +15,9 @@ See https://thegraph.com/docs/en/cookbook/substreams-powered-subgraphs/
 
 ### Triggers: Processing subgraph mappings with substreams triggers
 
-Using a working substreams package, the next steps needed to upgrade a Substreams-powered subgraph to trigger our mapping and process data using AssemblyScript.
+n order to use Substreams triggers you will need a working Substreams package. The following steps outline how to upgrade the package to trigger AssemblyScript mappings..
 
-To do this, start a new project and run graph init. Choose substreams, name the subgraph slug and define the directory to create the subgraph. This will prompt you to include the path to the spkg file you want to use for your triggers.
+To do this, start a new project and run graph init. Choose `substreams`, name the subgraph slug and define the directory to create the subgraph. This will prompt you to include the path to the spkg file you want to use for your triggers.
 
 ```
 ✔ Substreams network · mainnet
@@ -41,12 +41,13 @@ Next steps:
 Make sure to visit the documentation on <https://thegraph.com/docs/> for further information.
 ```
 
--   Update subgraph.yaml with the following changes…
--   Update the moduleName key to the substreams module you want to use as a trigger
--   Change the dataSources mapping kind key to the type substreams/triggers
--   Add the file key and define where the handlers will be executed (e.g. ./src/mapping.ts)
--   Update the apiVersion key to 0.0.7 or higher
--   Define the handler (e.g. handleContract)
+Update subgraph.yaml with the following changes…
+
+-   Update the moduleName key to the Substreams module you want to use as a trigger
+-   Change the dataSources mapping kind key to the type `substreams/triggers`
+-   Add the file key and define where the handlers will be executed (e.g. `./src/mapping.ts`)
+-   Update the apiVersion key to `0.0.7` or higher
+-   Define the handler (e.g. `handleContract`)
 
 ```
 specVersion: 0.0.4
@@ -160,11 +161,11 @@ import { BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 import * as assembly from "./pb/assembly";
 import { Contract } from "../generated/schema";
 
-
+g
 export function handleContract(bytes: Uint8Array): void {
    let contracts = assembly.example.Contracts.decode(bytes.buffer);
    if (contracts.contracts.length == 0) {
-       log.error("No contracts found", []);
+       log.info("No contracts found", []);
        return;
    } else {
        // Loop through all contracts

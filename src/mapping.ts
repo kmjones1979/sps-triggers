@@ -5,7 +5,7 @@ import { Contract } from "../generated/schema";
 export function handleContract(bytes: Uint8Array): void {
     let contracts = assembly.example.Contracts.decode(bytes.buffer);
     if (contracts.contracts.length == 0) {
-        log.error("No contracts found", []);
+        log.info("No contracts found", []);
         return;
     } else {
         // Loop through all contracts
